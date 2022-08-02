@@ -8,7 +8,6 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder answer = new StringBuilder();
 
-
         String s = "";
         int count = 0;
         while(!s.equals("*") && count < 101){
@@ -21,20 +20,17 @@ public class Main {
                 int leng = num-i;
                 String arr[] = new String[leng]; //배열길이 3 -> 2 -> 1
 
-                for(int j = 0; j < leng; j++){ //세부경우의 수
-                    //길이를 초과하면? -> 거꾸로세서 경우를제거해줘야하나
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(s.charAt(j)).append(s.charAt(j+i));
-                    arr[j] = sb.toString();
-                }
                 HashSet<String> set = new HashSet<>();
                 for(int j = 0; j < leng; j++){
                     //중복확인 해시맵에 넣어버리고 개수를 배열전체원소개수랑 비교해서 차이나면 false?
-                    set.add(arr[j]);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(s.charAt(j)).append(s.charAt(j+i));
+                    set.add(sb.toString());
                 }
 
                 if(leng != set.size()){
                     check = 1;
+                    break;
                 }
             }
             if(!s.equals("*")){
